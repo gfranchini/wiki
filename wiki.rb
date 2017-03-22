@@ -8,8 +8,18 @@ rescue Errno::ENOENT
   return nil
 end
 
+def save_content(title, content)
+  File.open("pages/#{title}.txt", "w") do |file|
+    file.print(content)
+  end
+end
+
 get("/") do
   erb(:welcome) #pulls the welcome.erb file from the views directory
+end
+
+get("/new") do
+  erb(:new)
 end
 
 get("/:title") do
